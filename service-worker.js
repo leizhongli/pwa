@@ -16,7 +16,7 @@ self.addEventListener('fetch', function (event) {
                     return response;
                 }
                 var requestToCache = event.request.clone();
-                return fetch(requestToCache)
+                return fetch(requestToCache.url)
                         .then(function(response) {
                             if (!response || response.status!=200) {
                                 return response;
@@ -24,7 +24,7 @@ self.addEventListener('fetch', function (event) {
                             var responseToCache = response.clone();
                             caches.open(cacheName)
                                 .then(function(cache) {
-                                    cache.put(requestToCache, responseToCache)
+                                    cache.put(requestToCache.url, responseToCache)
                                 })
                             return response;
                         })
