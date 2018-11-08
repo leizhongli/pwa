@@ -1,0 +1,52 @@
+// importScripts('https://storage.googleapis.com/workbox-cdn/releases/3.0.0-alpha.3/workbox-sw.js');
+// if(workbox) {
+//     console.log(`Yay! workbox is loaded`);
+// }else {
+//     console.log(`Boo! workbox didn't load`);
+// }
+// var cacheName = 'helloWorld';
+// self.addEventListener('install', event => {
+//     event.waitUntil(
+//         caches.open(cacheName)
+//             .then(cache => cache.addAll([
+//                 '/public/js/script.js',
+//                 '/public/image/figure.jpeg'
+//             ]))
+//     )
+// })
+// self.addEventListener('fetch', event => {
+//     event.respondWith(
+//         caches.match(event.request)
+//             .then(function(response) {
+//                 if (response) {
+//                     return response;
+//                 }
+//                 return fetch(event.request);
+//             })
+//     )
+// })
+
+// self.addEventListener('fetch', function(event) {
+//     event.respondWith(
+//         caches.match(event.request) 
+//             .then(function (response) {
+//                 if (response) {
+//                     return response;
+//                 }
+//                 var requestToCache = event.request.clone();
+//                 return fetch(requestToCache.url)
+//                         .then(function(response) {
+//                             if (!response || response.status!=200) {
+//                                 return response;
+//                             }
+//                             var responseToCache = response.clone();
+//                             caches.open(cacheName)
+//                                 .then(function(cache) {
+//                                     cache.put(response.url, responseToCache)
+//                                 })
+//                             return response;
+//                         })
+//             })
+//     )
+// })
+

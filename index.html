@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Hello Caching World!</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+  <style>
+    #body {
+      font-family: 'Lato', sans-serif;
+    }
+  </style>
+</head>
+<body>
+  <img src="/public/image/figur.jpg" />
+  <h1>
+    Hello Service Worker Cache!
+  </h1>
+  <script>
+    if('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/service-worker.js')
+        .then(function(registration) {
+            console.log('ServiceWorker registration successful with scope: ', registration.scope);
+        })
+        .catch(function(err) {
+          console.log('ServiceWorker registration failed: ', err);
+        })
+    }
+  </script>
+</body>
+</html>
