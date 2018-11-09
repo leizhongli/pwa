@@ -1,41 +1,33 @@
-var cacheName = 'latestNews-v1';
+"use strict";
 
-// Cache our known resources during install
-self.addEventListener('install', event => {
-    event.waitUntil(
-        caches.open(cacheName)
-            .then(cache => cache.addAll([
-                './public/js/script.js',
-                './index.html'
-            ]))
-    );
-});
 
-// Cache any new resources as they are fetched
+// Listen to fetch events
 self.addEventListener('fetch', function (event) {
-    event.respondWith(
-        caches.match(event.request, { ignoreSearch: true })
-            .then(function (response) {
-                if (response) {
-                    return response;
-                }
-                var fetchRequest = event.request.clone();
 
-                return fetch(fetchRequest).then(
-                    function (response) {
-                        if (!response || response.status !== 200) {
-                            return response;
-                        }
+    // Check if the image is a jpeg
+    if (/\.jpg$|.png$/.test(event.request.url)) {
 
-                        var responseToCache = response.clone();
-                        caches.open(cacheName)
-                            .then(function (cache) {
-                                cache.put(event.request, responseToCache);
-                            });
+        // Inspect the accept header for WebP support
+        var supportsWebp = false;
+        if (event.request.headers.has('accept')) {
+            supportsWebp = event.request.headers
+                .get('accept')
+                .includes('webp');
+        }
 
-                        return response;
-                    }
-                );
-            })
-    );
+        // If we support WebP
+        if (supportsWebp) {
+            // Clone the request
+            var req = event.request.clone();
+
+            // Build the return URL
+            var returnUrl = req.url.substr(0, req.url.lastIndexOf(".")) + ".webp";
+
+            event.respondWith(
+                fetch(returnUrl, {
+                    mode: 'no-cors'
+                })
+            );
+        }
+    }
 });

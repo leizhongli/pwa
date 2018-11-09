@@ -13,24 +13,18 @@
   </style>
 </head>
 <body>
-  <div id="header">
-    <h1>Progressive Times</h1>
-    <h6>Latest News</h6>
-  </div>
-  <!-- latest news -->
-  <div id="latest"></div>
-  <hr>
-  <!-- javaScript -->
-  <script async src="./public/js/script.js"></script>
+  <h1>Brooklyn Bridge</h1>
+  <img src="./public/image/figur.jpg" alt="Brooklyn Bridge - New York">
   <script>
-    if('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('./service-worker.js')
-        .then(function(registration) {
-            console.log('ServiceWorker registration successful with scope: ', registration.scope);
-        })
-        .catch(function(err) {
-          console.log('ServiceWorker registration failed: ', err);
-        })
+    // Register the service worker
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('./service-worker.js').then(function (registration) {
+        // Registration was successful
+        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+      }).catch(function (err) {
+        // registration failed :(
+        console.log('ServiceWorker registration failed: ', err);
+      });
     }
   </script>
 </body>
