@@ -28,7 +28,6 @@ self.addEventListener('fetch', function (event) {
             var req = event.request.clone();
             // Build the return URL
             var returnUrl = req.url.substr(0, req.url.lastIndexOf(".")) + ".webp";
-            console.log(returnUrl, 1111);
             event.respondWith(
                 fetch(returnUrl, {
                     mode: 'no-cors'
