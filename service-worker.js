@@ -9,6 +9,7 @@ self.addEventListener('fetch', function (event) {
 
         // Inspect the accept header for WebP support
         var supportsWebp = false;
+        console.log(event.request, 111);
         if (event.request.headers.has('accept')) {
             supportsWebp = event.request.headers
                 .get('accept')
@@ -17,7 +18,6 @@ self.addEventListener('fetch', function (event) {
 
         // If we support WebP
         if (supportsWebp) {
-            console.log(3333);
             // Clone the request
             var req = event.request.clone();
 
