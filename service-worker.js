@@ -17,12 +17,13 @@ self.addEventListener('fetch', function (event) {
 
         // If we support WebP
         if (supportsWebp) {
+            console.log(3333);
             // Clone the request
             var req = event.request.clone();
 
             // Build the return URL
             var returnUrl = req.url.substr(0, req.url.lastIndexOf(".")) + ".webp";
-
+            console.log(returnUrl, 1111);
             event.respondWith(
                 fetch(returnUrl, {
                     mode: 'no-cors'
