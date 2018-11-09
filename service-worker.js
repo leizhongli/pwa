@@ -1,6 +1,12 @@
 "use strict";
 
+self.addEventListener('install', event => {
+  self.skipWaiting();
 
+  event.waitUntil(
+    // caching etc
+  );
+});
 // Listen to fetch events
 self.addEventListener('fetch', function (event) {
 
@@ -20,7 +26,6 @@ self.addEventListener('fetch', function (event) {
         if (supportsWebp) {
             // Clone the request
             var req = event.request.clone();
-
             // Build the return URL
             var returnUrl = req.url.substr(0, req.url.lastIndexOf(".")) + ".webp";
             console.log(returnUrl, 1111);
