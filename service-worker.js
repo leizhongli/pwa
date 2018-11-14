@@ -35,7 +35,7 @@ self.addEventListener('activate', function(e) {
   });
 
   console.log('cacheDeletePromises: ', cacheDeletePromises);
-  event.waitUntil(
+  e.waitUntil(
     Promise.all([cacheDeletePromises]
     ).then(() => {
       console.log('activate event ' + cacheStorageKey);
