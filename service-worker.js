@@ -16,6 +16,7 @@ self.addEventListener('fetch', function (event) {
         // Inspect the accept header for WebP support
         var supportsWebp = false;
         console.log(event.request, 111);
+        console.log('测试');
         if (event.request.headers.has('accept')) {
             supportsWebp = event.request.headers
                 .get('accept')
