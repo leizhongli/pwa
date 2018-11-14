@@ -5,7 +5,7 @@ var cacheList = [
 ];
 self.addEventListener('install', event => {
   console.log('Cache event!');
-  e.waitUntil(
+  event.waitUntil(
     caches.open(cacheStorageKey).then(function(cache) {
       console.log('Adding to Cache:', cacheList)
       return cache.addAll(cacheList)
@@ -35,7 +35,7 @@ self.addEventListener('activate', function(e) {
   });
 
   console.log('cacheDeletePromises: ', cacheDeletePromises);
-  e.waitUntil(
+  event.waitUntil(
     Promise.all([cacheDeletePromises]
     ).then(() => {
       console.log('activate event ' + cacheStorageKey);
